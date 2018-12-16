@@ -1,0 +1,33 @@
+{#START API authentication: erosa044@fiu.edu#}
+{%  extends 'rest_framework/api.html' %}
+{% load staticfiles %}
+{% load i18n %}
+{% load rest_framework %}
+
+{%  block title %}
+    BreazeHome API
+{% endblock %}
+
+{%  block branding %}
+    <span>
+        <a href="https://{{ request.get_host }}" rel="nofollow" class="navbar-brand">
+            BreazeHome API
+        </a>
+    </span>
+{% endblock %}
+
+<ul class="nav navbar-nav pull-right">
+    {% block userlinks %}
+        {% if user.is_authenticated %}
+            {%  optional_logout request user %}
+            <a class="btn" href="/logout">
+                <input type="button" value="logout" >
+            </a>
+        {% else %}
+            <a class="btn" href="/auth/login">
+                <input type="button" value="login">
+            </a>
+        {% endif %}
+    {% endblock %}
+</ul>
+{#END API authentication#}
